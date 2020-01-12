@@ -26,14 +26,29 @@ var questions = [
   }
 ];
 
+//Query Selector Block
 var titleEl = document.querySelector("#title");
 var choice1El = document.querySelector("#choice1");
 var choice2El = document.querySelector("#choice2");
 var choice3El = document.querySelector("#choice3");
 var choice4El = document.querySelector("#choice4");
 var commentEl = document.querySelector("#comment");
+var timerEl = document.querySelector("#timer");
 
+//Counting Variables
 var currentQuestion = 0;
+var countdown = 75;
+
+function startTimer (){
+  var result = setInterval(function(){
+    timerEl.textContent = countdown--;
+    if (countdown <= 0) {
+      clearInterval(result);
+      //high score page
+    }
+  }, 1000);
+
+};
 
 function getQuestion() {
   titleEl.textContent = questions[currentQuestion].title;
@@ -48,7 +63,7 @@ document.addEventListener("click", function(event){
   if (event.target.matches("button")){
     commentEl.textContent = "";
     commentEl.removeAttribute("class", "hide");
-    
+
     if (event.target.textContent === questions[currentQuestion].answer) {
       commentEl.textContent = "Correct!";
       currentQuestion++;
@@ -57,7 +72,7 @@ document.addEventListener("click", function(event){
         commentEl.setAttribute("class", "hide");
       }, 1000);
     } else {
-      //decrease timer
+      countdown = countdown - 15;
       commentEl.textContent = "Wrong!";
       setTimeout(function(){ 
         commentEl.setAttribute("class", "hide");
@@ -68,3 +83,4 @@ document.addEventListener("click", function(event){
 })
 
 getQuestion();
+startTimer();
