@@ -41,7 +41,7 @@ var countdown = 75;
 
 function startTimer (){
   var result = setInterval(function(){
-    timerEl.textContent = countdown--;
+    timerEl.textContent =  "Time: " + countdown--;
     if (countdown <= 0) {
       clearInterval(result);
       //high score page
