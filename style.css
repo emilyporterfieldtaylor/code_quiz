@@ -10,8 +10,19 @@ h1 {
   text-align: center;
 }
 
+#score {
+  float: left;
+  margin: 10px;
+  text-decoration: none;
+}
+
+#score:hover {
+  color: blueviolet;
+}
+
 #timer {
   float: right;
+  margin: 10px;
 }
 
 #title {

@@ -34,6 +34,8 @@ var choice3El = document.querySelector("#choice3");
 var choice4El = document.querySelector("#choice4");
 var commentEl = document.querySelector("#comment");
 var timerEl = document.querySelector("#timer");
+var quizEl = document.querySelector("#quiz");
+var scoreEl = document.querySelector("#highscore");
 
 //Counting Variables
 var currentQuestion = 0;
@@ -81,6 +83,12 @@ document.addEventListener("click", function(event){
   }
 
 })
+
+// View Score list
+function showScore() {
+  scoreEl.removeAttribute("class", "hide");
+  quizEl.setAttribute("class" , "hide");
+}
 
 getQuestion();
 startTimer();
