@@ -86,7 +86,7 @@ document.addEventListener("click", function(event){
 
 // View Score list
 function showScore() {
-  scoreEl.removeAttribute("class", "hide");
+  scoreEl.classList.remove("hide");
   quizEl.setAttribute("class" , "hide");
 }
 
