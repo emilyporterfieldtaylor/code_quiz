@@ -36,10 +36,18 @@ var commentEl = document.querySelector("#comment");
 var timerEl = document.querySelector("#timer");
 var quizEl = document.querySelector("#quiz");
 var scoreEl = document.querySelector("#highscore");
+var landingEl = document.querySelector("#landing");
 
 //Counting Variables
 var currentQuestion = 0;
 var countdown = 75;
+
+function startQuiz () {
+  landingEl.setAttribute("class", "hide");
+  quizEl.classList.remove("hide");
+}
+
+document.getElementById("#start").addEventListener("click", startQuiz());
 
 function startTimer (){
   var result = setInterval(function(){
@@ -90,5 +98,6 @@ function showScore() {
   quizEl.setAttribute("class" , "hide");
 }
 
+startQuiz();
 getQuestion();
 startTimer();
