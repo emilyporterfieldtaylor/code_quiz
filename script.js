@@ -41,18 +41,22 @@ var landingEl = document.querySelector("#landing");
 //Counting Variables
 var currentQuestion = 0;
 var countdown = 75;
+var quizFinished = false;
 
 function startQuiz () {
   landingEl.setAttribute("class", "hide");
+  getQuestion();
+  startTimer();
   quizEl.classList.remove("hide");
 }
 
-document.getElementById("#start").addEventListener("click", startQuiz());
+document.getElementById("start").addEventListener("click", startQuiz);
 
 function startTimer (){
+  timerEl.textContent =  "Time: " + countdown--;
   var result = setInterval(function(){
     timerEl.textContent =  "Time: " + countdown--;
-    if (countdown <= 0) {
+    if (countdown <= 0 || quizFinished) {
       clearInterval(result);
       //high score page
     }
@@ -76,11 +80,15 @@ document.addEventListener("click", function(event){
 
     if (event.target.textContent === questions[currentQuestion].answer) {
       commentEl.textContent = "Correct!";
-      currentQuestion++;
-      getQuestion();
-      setTimeout(function(){ 
-        commentEl.setAttribute("class", "hide");
-      }, 1000);
+      currentQuestion++; 
+      if (questions.length === currentQuestion) {
+        showScore();
+      } else {
+        getQuestion();
+        setTimeout(function(){ 
+          commentEl.setAttribute("class", "hide");
+        }, 1000);
+      }
     } else {
       countdown = countdown - 15;
       commentEl.textContent = "Wrong!";
@@ -94,10 +102,10 @@ document.addEventListener("click", function(event){
 
 // View Score list
 function showScore() {
+  var currentTime = countdown;
+  quizFinished = true;
   scoreEl.classList.remove("hide");
   quizEl.setAttribute("class" , "hide");
+
 }
 
-startQuiz();
-getQuestion();
-startTimer();
