@@ -101,18 +101,16 @@ document.addEventListener("click", function(event){
 
 })
 
-// View Score list
+// View score and enter initials
 function showScore() {
   var currentTime = countdown;
   quizFinished = true;
+  landingEl.setAttribute("class" , "hide");
   finalScoreEl.textContent = "Final Score: " + currentTime;
   scoreEl.classList.remove("hide");
   quizEl.setAttribute("class" , "hide");
 }
 
-function highScoreList () {
-  fianlScoreEl.textContent = "";
-  fianlScoreEl.textContent = "Final Score: " + scoreEl;
-}
+
 
 

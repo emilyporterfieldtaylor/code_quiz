@@ -38,7 +38,7 @@ button {
 }
 
 .btn{
-  color: white;
+  color: white !important;
   background-color: coral !important;
   border-color: coral !important;
 }
@@ -58,6 +58,10 @@ button {
 
 h2 {
   margin-top: 10px !important;
+}
+
+#landing {
+  text-align: center;
 }
 
 
