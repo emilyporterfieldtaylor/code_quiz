@@ -36,3 +36,28 @@ button {
   background-color: coral !important;
   border-color: coral !important;
 }
+
+.btn{
+  color: white;
+  background-color: coral !important;
+  border-color: coral !important;
+}
+
+#timesUp {
+  border-bottom: solid 2px coral;
+}
+
+#finalScore {
+  color: blueviolet;
+  margin: 10px;
+}
+
+#highScore {
+  text-align: center;
+}
+
+h2 {
+  margin-top: 10px !important;
+}
+
+

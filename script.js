@@ -37,6 +37,7 @@ var timerEl = document.querySelector("#timer");
 var quizEl = document.querySelector("#quiz");
 var scoreEl = document.querySelector("#highscore");
 var landingEl = document.querySelector("#landing");
+var finalScoreEl = document.querySelector("#finalScore");
 
 //Counting Variables
 var currentQuestion = 0;
@@ -104,8 +105,14 @@ document.addEventListener("click", function(event){
 function showScore() {
   var currentTime = countdown;
   quizFinished = true;
+  finalScoreEl.textContent = "Final Score: " + currentTime;
   scoreEl.classList.remove("hide");
   quizEl.setAttribute("class" , "hide");
-
 }
+
+function highScoreList () {
+  fianlScoreEl.textContent = "";
+  fianlScoreEl.textContent = "Final Score: " + scoreEl;
+}
+
 
