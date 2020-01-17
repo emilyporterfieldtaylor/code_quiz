@@ -36,6 +36,7 @@ var commentEl = document.querySelector("#comment");
 var timerEl = document.querySelector("#timer");
 var quizEl = document.querySelector("#quiz");
 var scoreEl = document.querySelector("#highscore");
+var scoreListEl = document.querySelector("#scoreList");
 var landingEl = document.querySelector("#landing");
 var finalScoreEl = document.querySelector("#finalScore");
 
@@ -44,6 +45,7 @@ var currentQuestion = 0;
 var countdown = 75;
 var finalTime = 0;
 var quizFinished = false;
+var scores = [];
 
 function startQuiz () {
   landingEl.setAttribute("class", "hide");
@@ -63,7 +65,6 @@ function startTimer (){
       //high score page
     }
   }, 1000);
-
 };
 
 function getQuestion() {
@@ -112,9 +113,31 @@ function showScore() {
   quizEl.setAttribute("class" , "hide");
 }
 
-function saveScore() {
-  var initials = document.querySelector("input");
-  localStorage.setItem(localStorage.length, finalTime + " - " + initials);
+function renderScores() {
+  landingEl.setAttribute("class" , "hide");
+  scoreEl.setAttribute("class" , "hide");
+  quizEl.setAttribute("class" , "hide");
+  scoreListEl.classList.remove("hide");
+  var list = document.querySelector("ul");
+  list.innerHTML = "";
+  for (var i = 0; i < scores.length; i++) {
+      var score = scores[i];
+      var li = document.createElement("li");
+      li.classList.add("list-group-item");
+      li.textContent = score;
+      list.appendChild(li);
+  }
 }
 
+function saveScore() {
+  var initials = document.querySelector("input").value;
+  scores.push(initials + "........... " + finalTime);
+  localStorage.setItem("scores", JSON.stringify(scores));
+  renderScores();
+}
 
+function loadScores() {
+  scores = JSON.parse(localStorage.getItem("scores")) || [];
+}
+
+loadScores();
