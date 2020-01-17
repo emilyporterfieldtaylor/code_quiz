@@ -48,7 +48,7 @@ var quizFinished = false;
 var scores = [];
 
 function startQuiz () {
-  landingEl.setAttribute("class", "hide");
+  landingEl.classList.add("hide");
   getQuestion();
   startTimer();
   quizEl.classList.remove("hide");
@@ -79,7 +79,7 @@ document.addEventListener("click", function(event){
   //validate the answer
   if (event.target.matches("button")){
     commentEl.textContent = "";
-    commentEl.removeAttribute("class", "hide");
+    commentEl.classList.remove("hide");
 
     if (event.target.textContent === questions[currentQuestion].answer) {
       commentEl.textContent = "Correct!";
@@ -89,14 +89,14 @@ document.addEventListener("click", function(event){
       } else {
         getQuestion();
         setTimeout(function(){ 
-          commentEl.setAttribute("class", "hide");
+          commentEl.classList.add("hide");
         }, 1000);
       }
     } else {
       countdown = countdown - 15;
       commentEl.textContent = "Wrong!";
       setTimeout(function(){ 
-        commentEl.setAttribute("class", "hide");
+        commentEl.classList.add("hide");
       }, 1000);
     }
   }
@@ -107,16 +107,16 @@ document.addEventListener("click", function(event){
 function showScore() {
   finalTime = countdown;
   quizFinished = true;
-  landingEl.setAttribute("class" , "hide");
+  landingEl.classList.add("hide");
   finalScoreEl.textContent = "Final Score: " + finalTime;
   scoreEl.classList.remove("hide");
-  quizEl.setAttribute("class" , "hide");
+  quizEl.classList.add("hide");
 }
 
 function renderScores() {
-  landingEl.setAttribute("class" , "hide");
-  scoreEl.setAttribute("class" , "hide");
-  quizEl.setAttribute("class" , "hide");
+  landingEl.classList.add("hide");
+  scoreEl.classList.add("hide");
+  quizEl.classList.add("hide");
   scoreListEl.classList.remove("hide");
   var list = document.querySelector("ul");
   list.innerHTML = "";
@@ -138,6 +138,21 @@ function saveScore() {
 
 function loadScores() {
   scores = JSON.parse(localStorage.getItem("scores")) || [];
+}
+
+function reset() {
+  scoreListEl.classList.add("hide");
+  landingEl.classList.remove("hide");
+  currentQuestion = 0;
+  countdown = 75;
+  finalTime = 0;
+  quizFinished = false;
+}
+
+function clearScores() {
+  localStorage.clear();
+  scores = [];
+  renderScores();
 }
 
 loadScores();
