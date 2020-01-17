@@ -42,6 +42,7 @@ var finalScoreEl = document.querySelector("#finalScore");
 //Counting Variables
 var currentQuestion = 0;
 var countdown = 75;
+var finalTime = 0;
 var quizFinished = false;
 
 function startQuiz () {
@@ -103,14 +104,17 @@ document.addEventListener("click", function(event){
 
 // View score and enter initials
 function showScore() {
-  var currentTime = countdown;
+  finalTime = countdown;
   quizFinished = true;
   landingEl.setAttribute("class" , "hide");
-  finalScoreEl.textContent = "Final Score: " + currentTime;
+  finalScoreEl.textContent = "Final Score: " + finalTime;
   scoreEl.classList.remove("hide");
   quizEl.setAttribute("class" , "hide");
 }
 
-
+function saveScore() {
+  var initials = document.querySelector("input");
+  localStorage.setItem(localStorage.length, finalTime + " - " + initials);
+}
 
 
